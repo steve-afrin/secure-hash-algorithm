@@ -1,0 +1,6 @@
+* text=auto !eol
+*.java -text
+*.properties -text
+*.groovy -text
+*.md -text
+*.xml -text

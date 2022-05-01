@@ -1,0 +1,12 @@
+This file is just random textual content to exercise the
+calculateChecksum(MessageDigest, File) method in the CalculateChecksum class.
+
+Since calculateChecksum(MessageDigest, File) reads a byte array to build the
+message digest, it really doesn't matter if the content of this file is textual
+or binary.
+
+Also because of how the message digest checksum is computed, it really makes
+little difference how big or small this file is in size. The size of this file
+may have a nominal performance degradation for ingestion of the byte array data
+in the file to build the actual message digest. It would be reasonable to assume
+a 1 GB file would take longer to build the message digest than a 100 KB file.
