@@ -1,12 +1,12 @@
 # [Secure Hash Algorithms (SHAs)](https://cryptobook.nakov.com/cryptographic-hash-functions/secure-hash-algorithms)
 
-For years we've seen CRCs and checksums of files on the Internet as a means of verifying that you successfully
-downloaded or received a _correct_ or _valid_ copy of a file. By the term _correct_ or _valid_ I mean that the
-file is verified on the receiving end as a file that has not been tampered with or altered by a bad actor somewhere
-in the transfer process.
+For years the information technology industry has seen CRCs and checksums of files on the Internet as a means of
+verifying that a user successfully downloaded or received a _correct_ or _valid_ copy of a file. The terms _correct_
+or _valid_ means that the file is verified on the receiving end as a file that has not been tampered with or altered
+by a bad actor somewhere in the transfer process.
 
 But how exactly are those CRCs or checksums calculated? How do they help to verify that a file has not been tampered
-with during transfer, and more importantly, how secure are those means of validation for unaltered files?
+with during transfer? More importantly, how secure are those means of validation for unaltered files?
 
 This project was originally designed to help me better understand what secure hash algorithms are and how message
 digests are properly calculated in Java. Hopefully this information may be beneficial to other developers as well.
@@ -14,28 +14,32 @@ digests are properly calculated in Java. Hopefully this information may be benef
 ## Some Basics
 
 Secure hash algorithms are generally one-way manipulations of data with the intention to generate a hash value that
-uniquely identifies the data or file contents. _Collisions_ of hash values are considered very bad and insecure and
-make the hash algorithm fundamentally unsafe for validating uniqueness of data.
+uniquely identifies the data or file contents. _Collisions_ of hash values are considered bad and insecure and make
+the hash algorithm fundamentally unsafe for validating uniqueness of data.
 
 The most common means of generating secure checksums in 2022 uses the
 [Merkle–Damgård construction](https://en.wikipedia.org/wiki/Merkle%E2%80%93Damg%C3%A5rd_construction),
 but there are other means for calculating secure checksums in a faster, more efficient, and more secure manner.
 
-Part of how secure a hash algorithm is involves assessing how likely the algorithm avoids collisions from generating
-the same hash values. Very good hash algorithms have an infitesimally small (nearly non-existent) chance of generating
-the same hash value for two separate sets of data.
+Part of how secure a hash algorithm is involves assessing the likelihood that the hash algorithm avoids collisions
+in all circumstances. Very good hash algorithms have an infinitesimally small (nearly non-existent) chance of
+generating the same hash value for two separate sets of data.
 
-Suppose you have two different files: File A and File B. If File A and File B can generate the same hash value, this
-winds up being very bad because you truly have no way to use the hash value to uniquely identify File A as being
-different (a.k.a. having different content) from File B. The only way the two files should generate the same hash
-value is if they are bit-for-bit equivalent in content.
+### Collision Example
 
-If even one bit is different between the files, then the fact that the _same_ hash value is generated inherently makes
-the hash algorithm insecure and useless for purposes of identifying uniqueness across different data sets.
+Suppose a user has two different files: `File A` and `File B`. If the hash algorithm can generate the same hash
+value for `File A` and `File B`, this winds up being insecure because that user truly has no way to use the hash
+value to uniquely distinguish `File A` as being different (a.k.a. having different content) from `File B`. The only
+way the hash algorithm should be able to generate the exact same hash value for two distinct files is if they are
+bit-for-bit equivalent in content.
+
+If even one bit is different between the two files, then the fact that the _same_ hash value is generated makes the
+hash algorithm inherently insecure and useless for purposes of identifying uniqueness across distinctly different
+data sets.
 
 ## SHA-1
 
-_Much more elaboration to be done here and in the `SHA-2` and `SHA-3` sections as well._
+_Much more elaboration to be done here and in the following `SHA-2` and `SHA-3` sections as well._
 
 ### [MD5](https://en.wikipedia.org/wiki/MD5) (1992)
 

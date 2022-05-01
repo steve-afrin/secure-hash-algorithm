@@ -1,6 +1,6 @@
 * text=auto !eol
-*.java -text
+*.java -text diff=java
 *.properties -text
 *.groovy -text
-*.md -text
-*.xml -text
+*.md -text diff=markdown
+*.xml -text diff=xml
