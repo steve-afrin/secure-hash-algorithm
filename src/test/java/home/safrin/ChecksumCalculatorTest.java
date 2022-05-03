@@ -40,10 +40,10 @@ class ChecksumCalculatorTest {
   void testCalculateChecksum(final String hashAlgorithm, final String expectedChecksum)
     throws IOException, NoSuchAlgorithmException {
 
-    final File file = new File("src/test/resources/checksum-test.txt");
+    final var file = new File("src/test/resources/checksum-test.txt");
 
     // Use specified hash algorithm as provided by parameter value
-    final MessageDigest messageDigest = MessageDigest.getInstance(hashAlgorithm);
+    final var messageDigest = MessageDigest.getInstance(hashAlgorithm);
     LOG.debug("MessageDigest provider and available services are {}", messageDigest.getProvider().getInfo());
 
     // Assert the correct computation of the CRC/checksum
